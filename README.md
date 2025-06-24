@@ -1,31 +1,88 @@
-# Processador de Documentos Pessoais
+# 🏆 HackatonAWS - Processador de Documentos Pessoais
 
-Esta aplicação processa documentos pessoais em PDF, identifica o tipo de documento (RG, CNH, Passaporte), extrai informações importantes e valida CPF.
+[![AWS](https://img.shields.io/badge/AWS-Textract-orange)](https://aws.amazon.com/textract/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://python.org)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)](https://opencv.org)
 
-## Funcionalidades
+Esta aplicação foi desenvolvida para o **Hackaton AWS** e processa documentos pessoais em PDF, identifica automaticamente o tipo de documento (RG, CNH, Passaporte), extrai informações importantes e valida CPF usando algoritmos oficiais.
 
-- **Identificação de Documento**: Detecta automaticamente se é RG, CNH ou Passaporte
-- **Extração de Informações**: Extrai nome e CPF do documento
-- **Validação de CPF**: Verifica se o CPF é válido usando o algoritmo oficial
-- **Extração de Foto**: Detecta e extrai fotos/rostos do documento
+## 🚀 Funcionalidades
 
-## Instalação
+- **🔍 Identificação Automática**: Detecta automaticamente se é RG, CNH ou Passaporte
+- **📝 Extração de Informações**: Extrai nome e CPF do documento usando OCR e AWS Textract
+- **✅ Validação de CPF**: Verifica se o CPF é válido usando o algoritmo oficial brasileiro
+- **📸 Extração de Foto**: Detecta e extrai fotos/rostos do documento usando Computer Vision
+- **☁️ Integração AWS**: Suporte completo ao Amazon Textract para OCR avançado
+- **🔧 Múltiplas Versões**: Implementações básica, robusta e com AWS Textract
 
-1. Instale as dependências:
-```bash
-pip install -r requirements.txt
+## 📁 Estrutura do Projeto
+
+```
+hackatonaws/
+├── src/                          # Código fonte principal
+│   ├── document_processor.py     # Versão principal
+│   ├── document_processor_textract.py  # Versão com AWS Textract
+│   ├── document_processor_robust.py    # Versão robusta
+│   └── requirements*.txt         # Dependências
+├── tests/                        # Testes e validações
+├── docs/                         # Documentação completa
+└── README.md                     # Este arquivo
 ```
 
-2. Para sistemas Linux, instale o Tesseract OCR:
+## ⚡ Instalação Rápida
+
+### 1. Clone o repositório
+```bash
+git clone https://github.com/SEU_USUARIO/hackatonaws.git
+cd hackatonaws
+```
+
+### 2. Instale as dependências
+```bash
+# Versão básica (OCR local)
+pip install -r src/requirements.txt
+
+# Versão com AWS Textract
+pip install -r src/requirements_textract.txt
+```
+
+### 3. Configure o Tesseract OCR (Linux)
 ```bash
 # Ubuntu/Debian
-sudo apt-get install tesseract-ocr
+sudo apt-get install tesseract-ocr tesseract-ocr-por
 
 # CentOS/RHEL
-sudo yum install tesseract
+sudo yum install tesseract tesseract-langpack-por
 ```
 
-## Uso
+### 4. Configure AWS (para versão Textract)
+```bash
+aws configure
+# Insira suas credenciais AWS
+```
+
+## ☁️ Integração AWS
+
+### Amazon Textract
+- **OCR Avançado**: Extração de texto com alta precisão
+- **Detecção de Formulários**: Identificação automática de campos
+- **Análise de Layout**: Compreensão da estrutura do documento
+
+### Benefícios da Versão AWS
+- ✅ Maior precisão na extração de texto
+- ✅ Melhor detecção de CPF e informações pessoais
+- ✅ Processamento em nuvem escalável
+- ✅ Suporte a documentos de baixa qualidade
+
+```python
+# Exemplo de uso com Textract
+from src.document_processor_textract import DocumentProcessorTextract
+
+processor = DocumentProcessorTextract()
+resultado = processor.process_document("documento.pdf", "output/")
+```
+
+## 🔧 Uso
 
 ### Linha de Comando
 
